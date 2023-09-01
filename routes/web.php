@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,14 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome/{name}', function ($name) {
-    return view('welcome', ["name" => $name]);
-})->name('welcome');
-
-Route::get('/product/{id}', function() {
-    return 
-    "
-    <h1>this is product page</h1>
-    <a href='".route("welcome", "oussama")."'>go to welcome page</a>
-    ";
-});
+Route::get('/', [HomeController::class, 'index']);
