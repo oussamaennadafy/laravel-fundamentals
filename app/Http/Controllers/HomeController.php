@@ -8,6 +8,6 @@ class HomeController extends Controller
 {
     // index
     public function index(Request $request) {
-        dd($request->all());
+        dd($request->ip());
     }
 }
