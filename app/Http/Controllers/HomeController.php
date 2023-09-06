@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     // index
-    public function index(Request $request) {
-        dd($request->all());
+    public function index(Request $request)
+    {
+        // dd($request->all());
+        dd("hello world");
     }
 }
