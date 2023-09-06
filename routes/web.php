@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +15,7 @@ use App\http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+// Route::get('/', [PostController::class, 'index']);
+
+
+Route::resource('posts', PostController::class);
