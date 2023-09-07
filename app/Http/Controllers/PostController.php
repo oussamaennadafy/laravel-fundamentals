@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +15,9 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = DB::table('posts')->get();
+        // $posts = DB::table('posts')->get();
+        $posts = Post::all();
+        // dd($posts);
         return view("posts", compact('posts'));
     }
 
