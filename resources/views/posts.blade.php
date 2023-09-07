@@ -41,10 +41,16 @@
                                 {{ $post->status === 1 ? 'active' : 'inactive' }}
                             </td>
                             <td class="px-6 py-4 flex items-center justify-center gap-6">
-                                <a href="#"
+                                <a href="/posts/{{ $post->id }}"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
+                                <a href="/posts/{{ $post->id }}/edit"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#"
-                                    class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                                <form action="/posts/{{ $post->id }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <input class="font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer"
+                                        type="submit" value="Delete">
+                                </form>
                             </td>
                         </tr>
                     @endforeach

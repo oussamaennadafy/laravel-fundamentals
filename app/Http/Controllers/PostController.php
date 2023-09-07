@@ -37,8 +37,8 @@ class PostController extends Controller
     {
         //
         $post = $request->all();
-        unset($post['_token']);
-        Post::insert($post);
+        Post::create($post);
+        // dd($post);
         return redirect('/posts');
     }
 
@@ -48,6 +48,9 @@ class PostController extends Controller
     public function show(string $id)
     {
         //
+        $post = Post::find($id);
+        // dd($post);
+        return view('details', compact('post'));
     }
 
     /**
@@ -56,6 +59,8 @@ class PostController extends Controller
     public function edit(string $id)
     {
         //
+        $post = Post::find($id);
+        return view('editPost', compact('post'));
     }
 
     /**
@@ -64,6 +69,14 @@ class PostController extends Controller
     public function update(Request $request, string $id)
     {
         //
+
+        Post::where('id', $id)->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'author' => $request->input('author'),
+            'status' => $request->input('status'),
+        ]);
+        return redirect('/posts');
     }
 
     /**
@@ -72,5 +85,7 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         //
+        Post::where('id', $id)->delete();
+        return redirect("/posts");
     }
 }
