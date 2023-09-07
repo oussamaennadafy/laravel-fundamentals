@@ -36,6 +36,10 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        $post = $request->all();
+        unset($post['_token']);
+        Post::insert($post);
+        return redirect('/posts');
     }
 
     /**
