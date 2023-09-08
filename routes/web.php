@@ -15,7 +15,10 @@ use App\Http\Controllers\PostController;
 |
 */
 
-// Route::get('/', [PostController::class, 'index']);
-
+Route::get('/posts/trash', [PostController::class, 'trash']);
 
 Route::resource('posts', PostController::class);
+
+Route::post('/posts/{id}/restore', [PostController::class, 'restore']);
+
+Route::delete('/posts/{id}/deletePermanently', [PostController::class, 'deletePermanently']);

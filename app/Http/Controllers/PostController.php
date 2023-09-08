@@ -88,4 +88,33 @@ class PostController extends Controller
         Post::where('id', $id)->delete();
         return redirect("/posts");
     }
+
+    /**
+     * Display a listing of the trahsed resource .
+     */
+    public function trash()
+    {
+        $posts = Post::onlyTrashed()->get();
+        return view("trash", ["posts" => $posts]);
+    }
+
+    /**
+     * Restore the specified resource.
+     */
+    public function restore(string $id)
+    {
+        //
+        dd("restore post with id : " . $id);
+        return redirect("/posts/trash");
+    }
+
+    /**
+     * Remove the specified resource from storage Permanently.
+     */
+    public function deletePermanently(string $id)
+    {
+        //
+        dd("delete permanently post with id : " . $id);
+        return redirect("/posts/trash");
+    }
 }

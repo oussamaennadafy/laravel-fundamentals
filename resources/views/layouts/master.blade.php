@@ -18,7 +18,7 @@
                     <a href="/posts/create">Create Post</a>
                 </li>
                 <li>
-                    <a href="#">about</a>
+                    <a href="/posts/trash">Trashed</a>
                 </li>
             </ul>
         </nav>
