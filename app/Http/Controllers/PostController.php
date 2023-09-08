@@ -104,7 +104,8 @@ class PostController extends Controller
     public function restore(string $id)
     {
         //
-        dd("restore post with id : " . $id);
+        // dd("restore post with id : " . $id);
+        Post::withTrashed()->find($id)->restore();
         return redirect("/posts/trash");
     }
 
@@ -114,7 +115,8 @@ class PostController extends Controller
     public function deletePermanently(string $id)
     {
         //
-        dd("delete permanently post with id : " . $id);
+        // dd("delete permanently post with id : " . $id);
+        Post::withTrashed()->find($id)->forceDelete();
         return redirect("/posts/trash");
     }
 }

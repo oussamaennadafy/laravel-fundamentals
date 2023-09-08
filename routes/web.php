@@ -19,6 +19,6 @@ Route::get('/posts/trash', [PostController::class, 'trash']);
 
 Route::resource('posts', PostController::class);
 
-Route::post('/posts/{id}/restore', [PostController::class, 'restore']);
+Route::post('/posts/{post}/restore', [PostController::class, 'restore']);
 
-Route::delete('/posts/{id}/deletePermanently', [PostController::class, 'deletePermanently']);
+Route::delete('/posts/{post}/deletePermanently', [PostController::class, 'deletePermanently']);
