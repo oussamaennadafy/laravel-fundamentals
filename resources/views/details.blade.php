@@ -24,7 +24,8 @@
                     <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl">
                         {{ $post->title }}</h1>
                 </header>
-                <p class="lead">{{ $post->description }}</p>
+                <p class="lead mb-5">{{ $post->description }}</p>
+                <img src="{{ asset('/storage/' . $post->image) }}" alt="">
             </article>
         </div>
     </main>

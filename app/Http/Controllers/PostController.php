@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -36,9 +37,19 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
-        $post = $request->all();
-        Post::create($post);
-        // dd($post);
+        // title 
+        // description
+        // author
+        // status
+        // image
+        $image = $request->image->store("/uploads/posts");
+        Post::create([
+            "title" => $request->title,
+            "description" => $request->description,
+            "author" => $request->author,
+            "status" => $request->status,
+            "image" => $image,
+        ]);
         return redirect('/posts');
     }
 
@@ -115,8 +126,12 @@ class PostController extends Controller
     public function deletePermanently(string $id)
     {
         //
-        // dd("delete permanently post with id : " . $id);
-        Post::withTrashed()->find($id)->forceDelete();
+        // find the post to delete
+        $post = Post::withTrashed()->find($id);
+        // remove the image of the post from the storage
+        Storage::delete($post->image);
+        // delete the post from the database
+        $post->forceDelete();
         return redirect("/posts/trash");
     }
 }

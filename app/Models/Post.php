@@ -16,5 +16,6 @@ class Post extends Model
         "description",
         "author",
         "status",
+        "image",
     ];
 }

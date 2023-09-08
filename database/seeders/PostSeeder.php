@@ -27,6 +27,7 @@ class PostSeeder extends Seeder
                 'description' => Str::random(300),
                 'author' => Str::random(10),
                 'status' => $booleanValue,
+                'image' => Str::random(10),
             ]);
         }
     }
