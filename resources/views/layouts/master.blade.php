@@ -15,6 +15,9 @@
         <nav>
             <ul class="flex items-center justify-center gap-4">
                 <li>
+                    <a href="/posts">Post</a>
+                </li>
+                <li>
                     <a href="/posts/create">Create Post</a>
                 </li>
                 <li>
