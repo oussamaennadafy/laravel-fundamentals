@@ -15,6 +15,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
+
 Route::get('/posts/trash', [PostController::class, 'trash']);
 
 Route::post('/posts/{post}/restore', [PostController::class, 'restore']);
@@ -22,3 +23,8 @@ Route::post('/posts/{post}/restore', [PostController::class, 'restore']);
 Route::delete('/posts/{post}/deletePermanently', [PostController::class, 'deletePermanently']);
 
 Route::resource('posts', PostController::class);
+
+
+Route::get("/login", function () {
+ return view('login');
+});
