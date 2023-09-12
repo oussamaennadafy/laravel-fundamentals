@@ -17,7 +17,7 @@ class PostController extends Controller
     {
         //
         // $posts = DB::table('posts')->get();
-        $posts = Post::all();
+        $posts = Post::paginate(5);
         // dd($posts);
         return view("posts", compact('posts'));
     }
@@ -117,7 +117,7 @@ class PostController extends Controller
         //
         // dd("restore post with id : " . $id);
         Post::withTrashed()->find($id)->restore();
-        return redirect("/posts/trash");
+        return redirect()->back();
     }
 
     /**

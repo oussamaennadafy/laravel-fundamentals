@@ -4,7 +4,7 @@
     <main class="min-h-[calc(100vh-216px)]">
         <h1 class="text-3xl text-center my-7">posts</h1>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg lg:w-3/4 mx-auto">
-            <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400 table-auto">
+            <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400 table-auto mb-3">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr class="text-center">
                         <th scope="col" class="px-6 py-3">
@@ -65,6 +65,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $posts->links() }}
         </div>
     </main>
 @endsection
