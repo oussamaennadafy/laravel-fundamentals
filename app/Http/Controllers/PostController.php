@@ -24,9 +24,10 @@ class PostController extends Controller
     {
         //
         // $posts = DB::table('posts')->get();
-        $posts = Cache::remember("posts", 60, function () {
-            return Post::paginate(3);
-        });
+        // $posts = Cache::remember("posts-page-" . request('page', 1), 60 * 5, function () {
+        //     return Post::paginate(1);
+        // });
+        $posts = Post::paginate(1);
         // dd($posts);
         return view("posts", compact('posts'));
     }

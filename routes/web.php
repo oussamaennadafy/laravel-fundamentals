@@ -1,9 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\PostController;
-use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,23 +14,18 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
-
-Route::get('/posts/trash', [PostController::class, 'trash']);
-
-Route::post('/posts/{post}/restore', [PostController::class, 'restore']);
-
-Route::delete('/posts/{post}/deletePermanently', [PostController::class, 'deletePermanently']);
-
-Route::resource('posts', PostController::class);
-
-
-Route::get("/login", function () {
- return view('login');
+Route::get('/', function () {
+    return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('send-mail', function () {
- Mail::raw("this is testing mail from laravel app", function ($message) {
-  $message->to("oussama.ennadafy@gmail.com")->subject('no-reply');
- });
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+require __DIR__.'/auth.php';
