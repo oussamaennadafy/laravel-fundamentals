@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,7 +14,7 @@ class PostController extends Controller
 
     public function __construct()
     {
-        $this->middleware('authMiddleware');
+        // $this->middleware('authMiddleware');
     }
 
     /**
@@ -23,7 +24,9 @@ class PostController extends Controller
     {
         //
         // $posts = DB::table('posts')->get();
-        $posts = Post::paginate(5);
+        $posts = Cache::remember("posts", 60, function () {
+            return Post::paginate(3);
+        });
         // dd($posts);
         return view("posts", compact('posts'));
     }
