@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GateWays\PaypalController;
+use App\Http\Controllers\Gateways\StripeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,7 +43,15 @@ Route::get('product', function () {
 });
 
 
+
+// paypal routes
 Route::post("paypal-payment", [PaypalController::class, 'payment'])->name("paypal.payment");
 
 Route::get("paypal-success", [PaypalController::class, 'success'])->name("paypal.success");
 Route::get("paypal-cancel", [PaypalController::class, 'cancel'])->name("paypal.cancel");
+
+// stripe routes
+Route::post("stripe-payment", [StripeController::class, 'payment'])->name("stripe.payment");
+
+Route::get("stripe-success", [StripeController::class, 'success'])->name("stripe.success");
+Route::get("stripe-cancel", [StripeController::class, 'cancel'])->name("stripe.cancel");

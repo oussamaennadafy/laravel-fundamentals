@@ -44,7 +44,7 @@
                 </div>
                 <div class="flex items-center justify-between">
                     <span class="text-3xl font-bold text-gray-900 dark:text-white">$599</span>
-                    <form action="{{ route('paypal.payment') }}" method="post">
+                    <form action="{{ route('stripe.payment') }}" method="post">
                         @csrf
                         <input type="hidden" name="price" value="599">
                         <input type="submit" value="Buy Now"
